@@ -1,0 +1,358 @@
+http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch04_:_Simple_Network_Troubleshooting#.Vy3ZTHTuqV5
+
+---
+
+
+# ping 10.0.0.4
+PING 10.0.0.4 (10.0.0.4) 56(84) bytes of data.
+64 bytes from 10.0.0.4: icmp_seq=1 ttl=64 time=0.136 ms
+64 bytes from 10.0.0.4: icmp_seq=2 ttl=64 time=0.135 ms
+64 bytes from 10.0.0.4: icmp_seq=3 ttl=64 time=0.139 ms
+64 bytes from 10.0.0.4: icmp_seq=4 ttl=64 time=0.142 ms
+64 bytes from 10.0.0.4: icmp_seq=5 ttl=64 time=0.134 ms
+^C
+--- 10.0.0.4 ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 3996ms
+rtt min/avg/max/mdev = 0.134/0.137/0.142/0.008 ms
+
+
+sam. mai 07 13:42:52 root@linux-0004.sainte-marie-melun.net:/home/admin/Téléchargements
+# ping 10.0.0.1
+PING 10.0.0.1 (10.0.0.1) 56(84) bytes of data.
+64 bytes from 10.0.0.1: icmp_seq=1 ttl=64 time=0.393 ms
+64 bytes from 10.0.0.1: icmp_seq=2 ttl=64 time=0.504 ms
+64 bytes from 10.0.0.1: icmp_seq=3 ttl=64 time=0.471 ms
+64 bytes from 10.0.0.1: icmp_seq=4 ttl=64 time=0.978 ms
+64 bytes from 10.0.0.1: icmp_seq=5 ttl=64 time=0.353 ms
+^C
+--- 10.0.0.1 ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 4000ms
+rtt min/avg/max/mdev = 0.353/0.539/0.978/0.227 ms
+
+
+# ping google.fr
+PING google.fr (172.217.19.131) 56(84) bytes of data.
+64 bytes from par03s12-in-f3.1e100.net (172.217.19.131): icmp_seq=1 ttl=59 time=2.79 ms
+64 bytes from par03s12-in-f3.1e100.net (172.217.19.131): icmp_seq=2 ttl=59 time=2.80 ms
+64 bytes from par03s12-in-f3.1e100.net (172.217.19.131): icmp_seq=3 ttl=59 time=2.90 ms
+64 bytes from par03s12-in-f3.1e100.net (172.217.19.131): icmp_seq=4 ttl=59 time=2.89 ms
+^C
+--- google.fr ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3005ms
+rtt min/avg/max/mdev = 2.792/2.848/2.906/0.082 ms
+
+
+# ping sainte-marie-melun.org
+PING sainte-marie-melun.org (216.35.196.53) 56(84) bytes of data.
+64 bytes from server307.com (216.35.196.53): icmp_seq=1 ttl=51 time=85.7 ms
+64 bytes from server307.com (216.35.196.53): icmp_seq=2 ttl=51 time=84.9 ms
+64 bytes from server307.com (216.35.196.53): icmp_seq=3 ttl=51 time=85.0 ms
+64 bytes from server307.com (216.35.196.53): icmp_seq=4 ttl=51 time=84.9 ms
+^C
+--- sainte-marie-melun.org ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3004ms
+rtt min/avg/max/mdev = 84.920/85.169/85.795/0.418 ms
+
+
+
+
+# nslookup -debug sainte-marie-melun.org
+Server:		10.0.0.1
+Address:	10.0.0.1#53
+
+------------
+    QUESTIONS:
+	sainte-marie-melun.org, type = A, class = IN
+    ANSWERS:
+    ->  sainte-marie-melun.org
+	internet address = 216.35.196.53
+	ttl = 13428
+    AUTHORITY RECORDS:
+    ADDITIONAL RECORDS:
+------------
+Non-authoritative answer:
+Name:	sainte-marie-melun.org
+Address: 216.35.196.53
+
+
+
+# dig
+; <<>> DiG 9.9.5-9+deb8u6-Debian <<>>
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 28632
+;; flags: qr rd ra; QUERY: 1, ANSWER: 13, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;.				IN	NS
+
+;; ANSWER SECTION:
+.			14918	IN	NS	c.root-servers.net.
+.			14918	IN	NS	m.root-servers.net.
+.			14918	IN	NS	k.root-servers.net.
+.			14918	IN	NS	b.root-servers.net.
+.			14918	IN	NS	f.root-servers.net.
+.			14918	IN	NS	h.root-servers.net.
+.			14918	IN	NS	j.root-servers.net.
+.			14918	IN	NS	g.root-servers.net.
+.			14918	IN	NS	a.root-servers.net.
+.			14918	IN	NS	e.root-servers.net.
+.			14918	IN	NS	i.root-servers.net.
+.			14918	IN	NS	d.root-servers.net.
+.			14918	IN	NS	l.root-servers.net.
+
+;; Query time: 7 msec
+;; SERVER: 10.0.0.1#53(10.0.0.1)
+;; WHEN: Tue May 31 17:40:38 CEST 2016
+;; MSG SIZE  rcvd: 228
+
+
+
+sam. mai 07 13:49:45 root@linux-0004.sainte-marie-melun.net:/home/admin/Téléchargements
+# dig sainte-marie-melun.org
+; <<>> DiG 9.9.5-9+deb8u6-Debian <<>> sainte-marie-melun.org
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 30115
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;sainte-marie-melun.org.		IN	A
+
+;; ANSWER SECTION:
+sainte-marie-melun.org.	13357	IN	A	216.35.196.53
+
+;; Query time: 1 msec
+;; SERVER: 10.0.0.1#53(10.0.0.1)
+;; WHEN: Tue May 31 17:41:19 CEST 2016
+;; MSG SIZE  rcvd: 56
+
+
+
+
+sam. mai 07 13:49:59 root@linux-0004.sainte-marie-melun.net:/home/admin/Téléchargements
+
+
+# dig
+; <<>> DiG 9.9.5-9+deb8u6-Debian <<>>
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 45733
+;; flags: qr rd ra; QUERY: 1, ANSWER: 13, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;.				IN	NS
+
+;; ANSWER SECTION:
+.			14824	IN	NS	c.root-servers.net.
+.			14824	IN	NS	m.root-servers.net.
+.			14824	IN	NS	k.root-servers.net.
+.			14824	IN	NS	b.root-servers.net.
+.			14824	IN	NS	f.root-servers.net.
+.			14824	IN	NS	h.root-servers.net.
+.			14824	IN	NS	j.root-servers.net.
+.			14824	IN	NS	g.root-servers.net.
+.			14824	IN	NS	a.root-servers.net.
+.			14824	IN	NS	e.root-servers.net.
+.			14824	IN	NS	i.root-servers.net.
+.			14824	IN	NS	d.root-servers.net.
+.			14824	IN	NS	l.root-servers.net.
+
+;; Query time: 1 msec
+;; SERVER: 10.0.0.1#53(10.0.0.1)
+;; WHEN: Tue May 31 17:42:12 CEST 2016
+;; MSG SIZE  rcvd: 228
+
+
+
+sam. mai 07 13:49:45 root@linux-0004.sainte-marie-melun.net:/home/admin/Téléchargements
+# dig sainte-marie-melun.org
+
+; <<>> DiG 9.8.4-rpz2+rl005.12-P1 <<>> sainte-marie-melun.org
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 20634
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 2, ADDITIONAL: 2
+
+;; QUESTION SECTION:
+;sainte-marie-melun.org.		IN	A
+
+;; ANSWER SECTION:
+sainte-marie-melun.org.	14074	IN	A	216.35.196.53
+
+;; AUTHORITY SECTION:
+sainte-marie-melun.org.	86236	IN	NS	ns2.server307.com.
+sainte-marie-melun.org.	86236	IN	NS	ns1.server307.com.
+
+;; ADDITIONAL SECTION:
+ns1.server307.com.	14238	IN	A	216.35.196.53
+ns2.server307.com.	14238	IN	A	216.35.196.54
+
+;; Query time: 4 msec
+;; SERVER: 10.0.0.5#53(10.0.0.5)
+;; WHEN: Sat May  7 13:49:59 2016
+;; MSG SIZE  rcvd: 137
+
+sam. mai 07 13:49:59 root@linux-0004.sainte-marie-melun.net:/home/admin/Téléchargements
+
+
+# dig sainte-marie-melun.org  +nssearch 
+SOA ns1.server307.com. hostmaster.sainte-marie-melun.org. 1464704001 16384 2048 1048576 2560 from server 216.35.196.53 in 94 ms.
+SOA ns1.server307.com. hostmaster.sainte-marie-melun.org. 1464704001 16384 2048 1048576 2560 from server 216.35.196.54 in 94 ms.
+
+
+
+# netstat -i
+Table d'interfaces noyau
+Iface   MTU Met   RX-OK RX-ERR RX-DRP RX-OVR    TX-OK TX-ERR TX-DRP TX-OVR Flg
+eth0       1500 0     72342      0      0 0         68213      0      0      0 BMRU
+lo        65536 0     23300      0      0 0         23300      0      0      0 LRU
+
+
+
+
+# netstat -s
+Table d'interfaces noyau
+Iface   MTU Met   RX-OK RX-ERR RX-DRP RX-OVR    TX-OK TX-ERR TX-DRP TX-OVR Flg
+eth0       1500 0     72342      0      0 0         68213      0      0      0 BMRU
+lo        65536 0     23300      0      0 0         23300      0      0      0 LRU
+root@linux-0002:~# netstat -s
+Ip:
+    95291 total packets received
+    11 with invalid addresses
+    0 forwarded
+    0 incoming packets discarded
+    94926 incoming packets delivered
+    92160 requests sent out
+    101 dropped because of missing route
+Icmp:
+    18 ICMP messages received
+    0 input ICMP message failed.
+    Histogramme d'entrée ICMP
+        echo replies: 18
+    22 ICMP messages sent
+    0 ICMP messages failed
+    Histogramme de sortie ICMP
+        destination unreachable: 4
+        echo request: 18
+IcmpMsg:
+        InType0: 18
+        OutType3: 4
+        OutType8: 18
+Tcp:
+    1239 active connections openings
+    1071 passive connection openings
+    8 failed connection attempts
+    1 connection resets received
+    12 connections established
+    90716 segments received
+    91698 segments send out
+    41 segments retransmited
+    1 bad segments received.
+    96 resets sent
+Udp:
+    1317 packets received
+    4 packets to unknown port received.
+    0 packet receive errors
+    459 packets sent
+UdpLite:
+TcpExt:
+    998 TCP sockets finished time wait in fast timer
+    539 delayed acks sent
+    Quick ack mode was activated 8 times
+    26100 packets directly queued to recvmsg prequeue.
+    11629 bytes directly in process context from backlog
+    11188877 bytes directly received in process context from prequeue
+    44418 packet headers predicted
+    8334 packets header predicted and directly queued to user
+    4000 acknowledgments not containing data payload received
+    34866 predicted acknowledgments
+    12 congestion windows recovered without slow start after partial ack
+    16 other TCP timeouts
+    TCPLossProbes: 21
+    TCPLossProbeRecovery: 11
+    8 DSACKs sent for old packets
+    14 DSACKs received
+    31 connections reset due to unexpected data
+    2 connections reset due to early user close
+    TCPDSACKIgnoredNoUndo: 11
+    TCPSackShiftFallback: 3
+    TCPRcvCoalesce: 14435
+    TCPOFOQueue: 2759
+    TCPChallengeACK: 1
+    TCPSYNChallenge: 1
+    TCPAutoCorking: 5126
+    TCPSynRetrans: 10
+    TCPOrigDataSent: 53059
+IpExt:
+    InMcastPkts: 33
+    OutMcastPkts: 32
+    InBcastPkts: 3828
+    OutBcastPkts: 37
+    InOctets: 57517613
+    OutOctets: 47786048
+    InMcastOctets: 7355
+    OutMcastOctets: 5633
+    InBcastOctets: 571193
+    OutBcastOctets: 4320
+    InNoECTPkts: 95589
+
+
+-------
+
+
+
+#apt-get install speedtest-cli
+
+root@linux-0002:~# speedtest
+Retrieving speedtest.net configuration...
+Retrieving speedtest.net server list...
+Testing from Acropolis Telecom SA (89.251.49.147)...
+Selecting best server based on latency...
+Hosted by ONLINE S.A.S. (Vitry-sur-Seine) [14.27 km]: 5.87 ms
+Testing download speed........................................
+Download: 1.37 Mbits/s
+Testing upload speed..................................................
+Upload: 3.06 Mbits/s
+
+root@linux-0002:~# 
+
+root@linux-0002:~# speedtest
+Retrieving speedtest.net configuration...
+Retrieving speedtest.net server list...
+Testing from Acropolis Telecom SA (89.251.49.147)...
+Selecting best server based on latency...
+Hosted by ONLINE S.A.S. (Vitry-sur-Seine) [14.27 km]: 4.199 ms
+Testing download speed........................................
+Download: 0.68 Mbits/s
+Testing upload speed........
+
+
+root@linux-0002:~# date
+mardi 31 mai 2016, 17:49:59 (UTC+0200)
+..........................................
+Upload: 3.23 Mbits/s
+
+
+
+root@linux-0002:~# ping 89.251.49.147
+PING 89.251.49.147 (89.251.49.147) 56(84) bytes of data.
+64 bytes from 89.251.49.147: icmp_seq=1 ttl=255 time=1.20 ms
+64 bytes from 89.251.49.147: icmp_seq=2 ttl=255 time=1.42 ms
+64 bytes from 89.251.49.147: icmp_seq=3 ttl=255 time=1.42 ms
+^C
+--- 89.251.49.147 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2002ms
+rtt min/avg/max/mdev = 1.203/1.351/1.426/0.104 ms
+
+
+
+
+
+
+
+
+
+
+
+

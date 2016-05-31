@@ -1,0 +1,332 @@
+http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch04_:_Simple_Network_Troubleshooting#.Vy3ZTHTuqV5
+
+---
+
+
+# ping 10.0.0.4
+PING 10.0.0.4 (10.0.0.4) 56(84) bytes of data.
+64 bytes from 10.0.0.4: icmp_req=1 ttl=64 time=0.134 ms
+64 bytes from 10.0.0.4: icmp_req=2 ttl=64 time=0.101 ms
+64 bytes from 10.0.0.4: icmp_req=3 ttl=64 time=0.244 ms
+^C
+--- 10.0.0.4 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 1998ms
+rtt min/avg/max/mdev = 0.101/0.159/0.244/0.062 ms
+sam. mai 07 13:42:52 root@linux-0004.sainte-marie-melun.net:/home/admin/Téléchargements
+# ping 10.0.0.1
+PING 10.0.0.1 (10.0.0.1) 56(84) bytes of data.
+64 bytes from 10.0.0.1: icmp_req=1 ttl=64 time=0.651 ms
+64 bytes from 10.0.0.1: icmp_req=2 ttl=64 time=0.211 ms
+64 bytes from 10.0.0.1: icmp_req=3 ttl=64 time=0.200 ms
+64 bytes from 10.0.0.1: icmp_req=4 ttl=64 time=0.179 ms
+64 bytes from 10.0.0.1: icmp_req=5 ttl=64 time=0.162 ms
+^C
+--- 10.0.0.1 ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 3999ms
+rtt min/avg/max/mdev = 0.162/0.280/0.651/0.186 ms
+sam. mai 07 13:42:58 root@linux-0004.sainte-marie-melun.net:/home/admin/Téléchargements
+# ping google.fr
+PING google.fr (216.58.211.67) 56(84) bytes of data.
+64 bytes from par03s14-in-f67.1e100.net (216.58.211.67): icmp_req=1 ttl=59 time=2.86 ms
+64 bytes from par03s14-in-f67.1e100.net (216.58.211.67): icmp_req=2 ttl=59 time=2.77 ms
+64 bytes from par03s14-in-f67.1e100.net (216.58.211.67): icmp_req=3 ttl=59 time=2.91 ms
+64 bytes from par03s14-in-f67.1e100.net (216.58.211.67): icmp_req=4 ttl=59 time=2.90 ms
+64 bytes from par03s14-in-f67.1e100.net (216.58.211.67): icmp_req=5 ttl=59 time=2.91 ms
+^C
+--- google.fr ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 4006ms
+rtt min/avg/max/mdev = 2.774/2.875/2.919/0.072 ms
+
+# ping sainte-marie-melun.org
+PING sainte-marie-melun.org (216.35.196.53) 56(84) bytes of data.
+64 bytes from server307.com (216.35.196.53): icmp_req=1 ttl=51 time=85.4 ms
+64 bytes from server307.com (216.35.196.53): icmp_req=2 ttl=51 time=85.0 ms
+64 bytes from server307.com (216.35.196.53): icmp_req=3 ttl=51 time=84.9 ms
+^C
+--- sainte-marie-melun.org ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2002ms
+rtt min/avg/max/mdev = 84.956/85.161/85.432/0.199 ms
+
+
+
+# nslookup -debug sainte-marie-melun.org
+Server:		10.0.0.5
+Address:	10.0.0.5#53
+
+------------
+    QUESTIONS:
+	sainte-marie-melun.org, type = A, class = IN
+    ANSWERS:
+    ->  sainte-marie-melun.org
+	internet address = 216.35.196.53
+	ttl = 14203
+    AUTHORITY RECORDS:
+    ->  sainte-marie-melun.org
+	nameserver = ns2.server307.com.
+	ttl = 86365
+    ->  sainte-marie-melun.org
+	nameserver = ns1.server307.com.
+	ttl = 86365
+    ADDITIONAL RECORDS:
+    ->  ns1.server307.com
+	internet address = 216.35.196.53
+	ttl = 14367
+    ->  ns2.server307.com
+	internet address = 216.35.196.54
+	ttl = 14367
+------------
+Non-authoritative answer:
+Name:	sainte-marie-melun.org
+Address: 216.35.196.53
+
+
+
+# dig
+
+; <<>> DiG 9.8.4-rpz2+rl005.12-P1 <<>>
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 26164
+;; flags: qr rd ra; QUERY: 1, ANSWER: 13, AUTHORITY: 0, ADDITIONAL: 15
+
+;; QUESTION SECTION:
+;.				IN	NS
+
+;; ANSWER SECTION:
+.			3124	IN	NS	e.root-servers.net.
+.			3124	IN	NS	l.root-servers.net.
+.			3124	IN	NS	f.root-servers.net.
+.			3124	IN	NS	m.root-servers.net.
+.			3124	IN	NS	d.root-servers.net.
+.			3124	IN	NS	h.root-servers.net.
+.			3124	IN	NS	c.root-servers.net.
+.			3124	IN	NS	k.root-servers.net.
+.			3124	IN	NS	a.root-servers.net.
+.			3124	IN	NS	i.root-servers.net.
+.			3124	IN	NS	j.root-servers.net.
+.			3124	IN	NS	b.root-servers.net.
+.			3124	IN	NS	g.root-servers.net.
+
+;; ADDITIONAL SECTION:
+a.root-servers.net.	595470	IN	A	198.41.0.4
+b.root-servers.net.	595470	IN	A	192.228.79.201
+b.root-servers.net.	595471	IN	AAAA	2001:500:84::b
+c.root-servers.net.	595470	IN	A	192.33.4.12
+c.root-servers.net.	595470	IN	AAAA	2001:500:2::c
+d.root-servers.net.	595470	IN	A	199.7.91.13
+e.root-servers.net.	595470	IN	A	192.203.230.10
+f.root-servers.net.	595470	IN	A	192.5.5.241
+g.root-servers.net.	595470	IN	A	192.112.36.4
+h.root-servers.net.	595470	IN	A	198.97.190.53
+i.root-servers.net.	595470	IN	A	192.36.148.17
+j.root-servers.net.	595470	IN	A	192.58.128.30
+k.root-servers.net.	595470	IN	A	193.0.14.129
+l.root-servers.net.	595470	IN	A	199.7.83.42
+m.root-servers.net.	595470	IN	A	202.12.27.33
+
+;; Query time: 17 msec
+;; SERVER: 10.0.0.5#53(10.0.0.5)
+;; WHEN: Sat May  7 13:49:45 2016
+;; MSG SIZE  rcvd: 492
+
+sam. mai 07 13:49:45 root@linux-0004.sainte-marie-melun.net:/home/admin/Téléchargements
+# dig sainte-marie-melun.org
+
+; <<>> DiG 9.8.4-rpz2+rl005.12-P1 <<>> sainte-marie-melun.org
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 20634
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 2, ADDITIONAL: 2
+
+;; QUESTION SECTION:
+;sainte-marie-melun.org.		IN	A
+
+;; ANSWER SECTION:
+sainte-marie-melun.org.	14074	IN	A	216.35.196.53
+
+;; AUTHORITY SECTION:
+sainte-marie-melun.org.	86236	IN	NS	ns2.server307.com.
+sainte-marie-melun.org.	86236	IN	NS	ns1.server307.com.
+
+;; ADDITIONAL SECTION:
+ns1.server307.com.	14238	IN	A	216.35.196.53
+ns2.server307.com.	14238	IN	A	216.35.196.54
+
+;; Query time: 4 msec
+;; SERVER: 10.0.0.5#53(10.0.0.5)
+;; WHEN: Sat May  7 13:49:59 2016
+;; MSG SIZE  rcvd: 137
+
+sam. mai 07 13:49:59 root@linux-0004.sainte-marie-melun.net:/home/admin/Téléchargements
+
+
+# dig
+
+; <<>> DiG 9.8.4-rpz2+rl005.12-P1 <<>>
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 26164
+;; flags: qr rd ra; QUERY: 1, ANSWER: 13, AUTHORITY: 0, ADDITIONAL: 15
+
+;; QUESTION SECTION:
+;.				IN	NS
+
+;; ANSWER SECTION:
+.			3124	IN	NS	e.root-servers.net.
+.			3124	IN	NS	l.root-servers.net.
+.			3124	IN	NS	f.root-servers.net.
+.			3124	IN	NS	m.root-servers.net.
+.			3124	IN	NS	d.root-servers.net.
+.			3124	IN	NS	h.root-servers.net.
+.			3124	IN	NS	c.root-servers.net.
+.			3124	IN	NS	k.root-servers.net.
+.			3124	IN	NS	a.root-servers.net.
+.			3124	IN	NS	i.root-servers.net.
+.			3124	IN	NS	j.root-servers.net.
+.			3124	IN	NS	b.root-servers.net.
+.			3124	IN	NS	g.root-servers.net.
+
+;; ADDITIONAL SECTION:
+a.root-servers.net.	595470	IN	A	198.41.0.4
+b.root-servers.net.	595470	IN	A	192.228.79.201
+b.root-servers.net.	595471	IN	AAAA	2001:500:84::b
+c.root-servers.net.	595470	IN	A	192.33.4.12
+c.root-servers.net.	595470	IN	AAAA	2001:500:2::c
+d.root-servers.net.	595470	IN	A	199.7.91.13
+e.root-servers.net.	595470	IN	A	192.203.230.10
+f.root-servers.net.	595470	IN	A	192.5.5.241
+g.root-servers.net.	595470	IN	A	192.112.36.4
+h.root-servers.net.	595470	IN	A	198.97.190.53
+i.root-servers.net.	595470	IN	A	192.36.148.17
+j.root-servers.net.	595470	IN	A	192.58.128.30
+k.root-servers.net.	595470	IN	A	193.0.14.129
+l.root-servers.net.	595470	IN	A	199.7.83.42
+m.root-servers.net.	595470	IN	A	202.12.27.33
+
+;; Query time: 17 msec
+;; SERVER: 10.0.0.5#53(10.0.0.5)
+;; WHEN: Sat May  7 13:49:45 2016
+;; MSG SIZE  rcvd: 492
+
+sam. mai 07 13:49:45 root@linux-0004.sainte-marie-melun.net:/home/admin/Téléchargements
+# dig sainte-marie-melun.org
+
+; <<>> DiG 9.8.4-rpz2+rl005.12-P1 <<>> sainte-marie-melun.org
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 20634
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 2, ADDITIONAL: 2
+
+;; QUESTION SECTION:
+;sainte-marie-melun.org.		IN	A
+
+;; ANSWER SECTION:
+sainte-marie-melun.org.	14074	IN	A	216.35.196.53
+
+;; AUTHORITY SECTION:
+sainte-marie-melun.org.	86236	IN	NS	ns2.server307.com.
+sainte-marie-melun.org.	86236	IN	NS	ns1.server307.com.
+
+;; ADDITIONAL SECTION:
+ns1.server307.com.	14238	IN	A	216.35.196.53
+ns2.server307.com.	14238	IN	A	216.35.196.54
+
+;; Query time: 4 msec
+;; SERVER: 10.0.0.5#53(10.0.0.5)
+;; WHEN: Sat May  7 13:49:59 2016
+;; MSG SIZE  rcvd: 137
+
+sam. mai 07 13:49:59 root@linux-0004.sainte-marie-melun.net:/home/admin/Téléchargements
+
+
+# dig sainte-marie-melun.org  +nssearch 
+SOA ns1.server307.com. hostmaster.sainte-marie-melun.org. 1462611629 16384 2048 1048576 2560 from server 216.35.196.53 in 86 ms.
+SOA ns1.server307.com. hostmaster.sainte-marie-melun.org. 1462611629 16384 2048 1048576 2560 from server 216.35.196.54 in 88 ms.
+
+
+
+# netstat -i
+Table d'interfaces noyau
+Iface   MTU Met   RX-OK RX-ERR RX-DRP RX-OVR    TX-OK TX-ERR TX-DRP TX-OVR Flg
+eth0       1500 0    151787      0      0 0        107281      0      0      0 BMRU
+lo        16436 0      2857      0      0 0          2857      0      0      0 LRU
+
+
+
+# netstat -s
+Ip:
+    172156 total packets received
+    46 with invalid addresses
+    0 forwarded
+    0 incoming packets discarded
+    171932 incoming packets delivered
+    145434 requests sent out
+Icmp:
+    16 ICMP messages received
+    0 input ICMP message failed.
+    Histogramme d'entrée ICMP
+        echo replies: 16
+    58 ICMP messages sent
+    0 ICMP messages failed
+    Histogramme de sortie ICMP
+        destination unreachable: 42
+        echo request: 16
+IcmpMsg:
+        InType0: 16
+        OutType3: 42
+        OutType8: 16
+Tcp:
+    742 active connections openings
+    4 passive connection openings
+    13 failed connection attempts
+    3 connection resets received
+    13 connections established
+    167161 segments received
+    142184 segments send out
+    45 segments retransmited
+    0 bad segments received.
+    277 resets sent
+Udp:
+    5442 packets received
+    42 packets to unknown port received.
+    0 packet receive errors
+    3153 packets sent
+UdpLite:
+TcpExt:
+    220 TCP sockets finished time wait in fast timer
+    1523 delayed acks sent
+    1 delayed acks further delayed because of locked socket
+    Quick ack mode was activated 158 times
+    21390 packets directly queued to recvmsg prequeue.
+    4 bytes directly in process context from backlog
+    288493 bytes directly received in process context from prequeue
+    101462 packet headers predicted
+    246 packets header predicted and directly queued to user
+    4207 acknowledgments not containing data payload received
+    23640 predicted acknowledgments
+    31 congestion windows recovered without slow start after partial ack
+    1 timeouts after SACK recovery
+    42 other TCP timeouts
+    156 DSACKs sent for old packets
+    24 DSACKs received
+    107 connections reset due to unexpected data
+    3 connections reset due to early user close
+    TCPSackShiftFallback: 24
+IpExt:
+    InMcastPkts: 251
+    OutMcastPkts: 2
+    InBcastPkts: 1492
+    OutBcastPkts: 146
+    InOctets: 197970472
+    OutOctets: 55190727
+    InMcastOctets: 56234
+    OutMcastOctets: 80
+    InBcastOctets: 193551
+    OutBcastOctets: 12710
+
+
+
+
+
+
+
